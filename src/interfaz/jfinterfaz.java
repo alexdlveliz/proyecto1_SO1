@@ -60,6 +60,8 @@ boolean click = false;
         rspprocesos = new rojerusan.RSPanelsSlider();
         pprocesovacio = new javax.swing.JPanel();
         pprocesos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        rSTableMetro1 = new rojerusan.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -120,24 +122,27 @@ boolean click = false;
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 280, 300));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel1.setMinimumSize(new java.awt.Dimension(554, 413));
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.CardLayout());
 
         rsprogres.setName("rsprogres"); // NOI18N
         rsprogres.setOpaque(false);
+        rsprogres.setPreferredSize(new java.awt.Dimension(554, 413));
 
         pprogresvacio.setName("pprogresvacio"); // NOI18N
         pprogresvacio.setOpaque(false);
+        pprogresvacio.setPreferredSize(new java.awt.Dimension(554, 413));
 
         javax.swing.GroupLayout pprogresvacioLayout = new javax.swing.GroupLayout(pprogresvacio);
         pprogresvacio.setLayout(pprogresvacioLayout);
         pprogresvacioLayout.setHorizontalGroup(
             pprogresvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 554, Short.MAX_VALUE)
         );
         pprogresvacioLayout.setVerticalGroup(
             pprogresvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         rsprogres.add(pprogresvacio, "card3");
@@ -263,6 +268,7 @@ boolean click = false;
 
         rspprocesos.setName("rspprocesos"); // NOI18N
         rspprocesos.setOpaque(false);
+        rspprocesos.setPreferredSize(new java.awt.Dimension(554, 413));
 
         pprocesovacio.setOpaque(false);
 
@@ -270,17 +276,47 @@ boolean click = false;
         pprocesovacio.setLayout(pprocesovacioLayout);
         pprocesovacioLayout.setHorizontalGroup(
             pprocesovacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 554, Short.MAX_VALUE)
         );
         pprocesovacioLayout.setVerticalGroup(
             pprocesovacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         rspprocesos.add(pprocesovacio, "card2");
 
         pprocesos.setName("pprocesos"); // NOI18N
+        pprocesos.setPreferredSize(new java.awt.Dimension(554, 413));
         pprocesos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Proceso", "Hora inicio", "Hora fin"
+            }
+        ));
+        rSTableMetro1.setColorBackgoundHead(new java.awt.Color(255, 102, 0));
+        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 204, 102));
+        jScrollPane1.setViewportView(rSTableMetro1);
+
+        pprocesos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 390, 290));
 
         jLabel3.setFont(new java.awt.Font("AR CENA", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -394,6 +430,7 @@ boolean click = false;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pcalendarizacion;
     private javax.swing.JPanel pcalenvacio;
     private javax.swing.JPanel pprincipal;
@@ -405,6 +442,7 @@ boolean click = false;
     private rojeru_san.RSLabelFecha rSLabelFecha1;
     private rojeru_san.RSLabelHora rSLabelHora1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
+    private rojerusan.RSTableMetro rSTableMetro1;
     private rojerusan.RSPanelsSlider rscalendarizacion;
     private rojerusan.RSPanelsSlider rspprocesos;
     private rojerusan.RSPanelsSlider rsprincipal;
