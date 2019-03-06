@@ -5,11 +5,14 @@
  */
 package interfaz;
 
+import Clases.Hilo;
 import com.sun.awt.AWTUtilities;
+import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import rojerusan.RSPanelsSlider;
@@ -19,15 +22,28 @@ import rojerusan.RSPanelsSlider;
  * @author Nahomi
  */
 public class jfinterfaz extends javax.swing.JFrame {
-boolean click = false;
+
+    boolean click = false;
+    private ArrayList<JProgressBar> procesos;
+    private ArrayList<Integer> noProcesos;
+    private Hilo hiloProcesos;
+    private int q;
+
     /**
      * Creates new form jfinterfaz
      */
     public jfinterfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
-        AWTUtilities.setWindowOpaque(this,false);
+        AWTUtilities.setWindowOpaque(this, false);
         sNumeros(txtquantum);
+        procesos = new ArrayList<>();
+        noProcesos = new ArrayList<>();
+        hiloProcesos = new Hilo();
+        panelProgress.setLayout(new GridLayout(10, 1));
+        hiloProcesos.setPanelProcesos(panelProgress);
+        hiloProcesos.setProgressbar(procesos);
+        hiloProcesos.setTablita(rsTblProcesos, rSLabelHora1);
     }
 
     /**
@@ -48,6 +64,7 @@ boolean click = false;
         rsprogres = new rojerusan.RSPanelsSlider();
         pprogresvacio = new javax.swing.JPanel();
         pprogres = new javax.swing.JPanel();
+        panelProgress = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         rsprincipal = new rojerusan.RSPanelsSlider();
@@ -156,6 +173,11 @@ boolean click = false;
 
         pprogres.setName("pprogres"); // NOI18N
         pprogres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelProgress.setAutoscrolls(true);
+        panelProgress.setOpaque(false);
+        panelProgress.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pprogres.add(panelProgress, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 530, 270));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo5.jpg"))); // NOI18N
         pprogres.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 420));
@@ -346,16 +368,13 @@ boolean click = false;
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        if(click == false)
-        {
-            rsprincipal.setPanelSlider((int)1.2,pprincipal, RSPanelsSlider.DIRECT.UP);
-            rsprogres.setPanelSlider((int)1.2,pprogres, RSPanelsSlider.DIRECT.DOWN);
+        if (click == false) {
+            rsprincipal.setPanelSlider((int) 1.2, pprincipal, RSPanelsSlider.DIRECT.UP);
+            rsprogres.setPanelSlider((int) 1.2, pprogres, RSPanelsSlider.DIRECT.DOWN);
             click = true;
-        }
-        else
-        {
-            rsprincipal.setPanelSlider((int)1.2,pprincipalvacio, RSPanelsSlider.DIRECT.UP);
-            rsprogres.setPanelSlider((int)1.2,pprogresvacio, RSPanelsSlider.DIRECT.DOWN);
+        } else {
+            rsprincipal.setPanelSlider((int) 1.2, pprincipalvacio, RSPanelsSlider.DIRECT.UP);
+            rsprogres.setPanelSlider((int) 1.2, pprogresvacio, RSPanelsSlider.DIRECT.DOWN);
             click = false;
         }
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -373,34 +392,57 @@ boolean click = false;
     }//GEN-LAST:event_txtquantumMouseClicked
 
     private void btningresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btningresarMouseClicked
-        if(txtquantum.getText().length() == 0 || txtquantum.getText().equals("Ingrese Quantum")){
+        if (txtquantum.getText().length() == 0 || txtquantum.getText().equals("Ingrese Quantum")) {
             JOptionPane.showMessageDialog(null, "Ingrese un quantum correcto");
         } else {
-            rspprocesos.setPanelSlider((int)1.2,pprocesos, RSPanelsSlider.DIRECT.RIGHT);
-            rscalendarizacion.setPanelSlider((int)1.2,pcalendarizacion, RSPanelsSlider.DIRECT.LEFT);
+            rspprocesos.setPanelSlider((int) 1.2, pprocesos, RSPanelsSlider.DIRECT.RIGHT);
+            rscalendarizacion.setPanelSlider((int) 1.2, pcalendarizacion, RSPanelsSlider.DIRECT.LEFT);
+            q = Integer.parseInt(txtquantum.getText());
             rsTblProcesos.setModel(colocar_textos_tabla(rSLabelHora1.getHora()));
-        }    
+        }
     }//GEN-LAST:event_btningresarMouseClicked
 
     //Método para validar el ingreso de solo número en el txtquantum
-    private void sNumeros(JTextField txt){
+    private void sNumeros(JTextField txt) {
         txt.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e){
+            public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if(!Character.isDigit(c))
+                if (!Character.isDigit(c)) {
                     e.consume();
+                }
             }
         });
     }
-    
+
     //Método para colocar la hora de inicio del proceso X a la tabla
-    private DefaultTableModel colocar_textos_tabla(String hora){
+    private DefaultTableModel colocar_textos_tabla(String hora) {
         DefaultTableModel modelo = (DefaultTableModel) rsTblProcesos.getModel();
         String registros[] = new String[3];
         //Acá como proceso X porque vos ya manejas el contador de procesos, entonces ya solo lo concatenás en el registros[0]
-        registros[0] = "Proceso X";
+        registros[0] = "Proceso " + (modelo.getRowCount() + 1);
         registros[1] = hora;
         modelo.addRow(registros);
+        int numero = (int) (Math.random() * 250) + 1;
+        noProcesos.add(modelo.getRowCount());
+        procesos.add(new JProgressBar(0, numero));
+        procesos.get(procesos.size() - 1).setStringPainted(true);
+        procesos.get(procesos.size() - 1).setString("Proceso " + modelo.getRowCount() + " 0/" + procesos.get(procesos.size() - 1).getMaximum());
+        hiloProcesos.setProgressbar(procesos);
+        hiloProcesos.setNoProceso(noProcesos);
+        panelProgress.add(this.procesos.get(procesos.size() - 1));
+        hiloProcesos.setPanelProcesos(panelProgress);
+        if (hiloProcesos.getState() == Thread.State.NEW) {
+            hiloProcesos.setQuantum(q);
+            hiloProcesos.start();
+        } else if (hiloProcesos.getState() == Thread.State.TERMINATED && !procesos.isEmpty()) {
+            hiloProcesos = new Hilo();
+            hiloProcesos.setQuantum(q);
+            hiloProcesos.setPanelProcesos(panelProgress);
+            hiloProcesos.setTablita(rsTblProcesos, rSLabelHora1);
+            hiloProcesos.setProgressbar(procesos);
+            hiloProcesos.setNoProceso(noProcesos);
+            hiloProcesos.start();
+        }
         return modelo;
     }
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
@@ -458,6 +500,7 @@ boolean click = false;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelProgress;
     private javax.swing.JPanel pcalendarizacion;
     private javax.swing.JPanel pcalenvacio;
     private javax.swing.JPanel pprincipal;
