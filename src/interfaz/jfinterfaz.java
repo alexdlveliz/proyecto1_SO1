@@ -6,6 +6,12 @@
 package interfaz;
 
 import com.sun.awt.AWTUtilities;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import rojerusan.RSPanelsSlider;
 
 /**
@@ -21,6 +27,7 @@ boolean click = false;
         initComponents();
         this.setLocationRelativeTo(null);
         AWTUtilities.setWindowOpaque(this,false);
+        sNumeros(txtquantum);
     }
 
     /**
@@ -61,7 +68,7 @@ boolean click = false;
         pprocesovacio = new javax.swing.JPanel();
         pprocesos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojerusan.RSTableMetro();
+        rsTblProcesos = new rojerusan.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -212,6 +219,11 @@ boolean click = false;
                 btningresarMouseClicked(evt);
             }
         });
+        btningresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btningresarActionPerformed(evt);
+            }
+        });
         pprincipal.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 160, -1));
 
         rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 255, 255));
@@ -289,32 +301,17 @@ boolean click = false;
         pprocesos.setPreferredSize(new java.awt.Dimension(554, 413));
         pprocesos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+        rsTblProcesos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Proceso", "Hora inicio", "Hora fin"
             }
         ));
-        rSTableMetro1.setColorBackgoundHead(new java.awt.Color(255, 102, 0));
-        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 204, 102));
-        jScrollPane1.setViewportView(rSTableMetro1);
+        rsTblProcesos.setColorBackgoundHead(new java.awt.Color(255, 102, 0));
+        rsTblProcesos.setColorFilasBackgound2(new java.awt.Color(255, 204, 102));
+        jScrollPane1.setViewportView(rsTblProcesos);
 
         pprocesos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 390, 290));
 
@@ -376,9 +373,39 @@ boolean click = false;
     }//GEN-LAST:event_txtquantumMouseClicked
 
     private void btningresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btningresarMouseClicked
+        if(txtquantum.getText().length() == 0 || txtquantum.getText().equals("Ingrese Quantum")){
+            JOptionPane.showMessageDialog(null, "Ingrese un quantum correcto");
+        } else {
             rspprocesos.setPanelSlider((int)1.2,pprocesos, RSPanelsSlider.DIRECT.RIGHT);
             rscalendarizacion.setPanelSlider((int)1.2,pcalendarizacion, RSPanelsSlider.DIRECT.LEFT);
+            rsTblProcesos.setModel(colocar_textos_tabla(rSLabelHora1.getHora()));
+        }    
     }//GEN-LAST:event_btningresarMouseClicked
+
+    //Método para validar el ingreso de solo número en el txtquantum
+    private void sNumeros(JTextField txt){
+        txt.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e){
+                char c = e.getKeyChar();
+                if(!Character.isDigit(c))
+                    e.consume();
+            }
+        });
+    }
+    
+    //Método para colocar la hora de inicio del proceso X a la tabla
+    private DefaultTableModel colocar_textos_tabla(String hora){
+        DefaultTableModel modelo = (DefaultTableModel) rsTblProcesos.getModel();
+        String registros[] = new String[3];
+        //Acá como proceso X porque vos ya manejas el contador de procesos, entonces ya solo lo concatenás en el registros[0]
+        registros[0] = "Proceso X";
+        registros[1] = hora;
+        modelo.addRow(registros);
+        return modelo;
+    }
+    private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
+
+    }//GEN-LAST:event_btningresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,7 +469,7 @@ boolean click = false;
     private rojeru_san.RSLabelFecha rSLabelFecha1;
     private rojeru_san.RSLabelHora rSLabelHora1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
-    private rojerusan.RSTableMetro rSTableMetro1;
+    private rojerusan.RSTableMetro rsTblProcesos;
     private rojerusan.RSPanelsSlider rscalendarizacion;
     private rojerusan.RSPanelsSlider rspprocesos;
     private rojerusan.RSPanelsSlider rsprincipal;
