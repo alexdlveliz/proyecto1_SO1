@@ -71,9 +71,11 @@ public class jfinterfaz extends javax.swing.JFrame {
         pprincipalvacio = new javax.swing.JPanel();
         pprincipal = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txtquantum = new javax.swing.JTextField();
-        btningresar = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
+        btningresar = new rojerusan.RSMaterialButtonRectangle();
+        btninterrupción = new rojerusan.RSMaterialButtonRectangle();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         rscalendarizacion = new rojerusan.RSPanelsSlider();
@@ -127,7 +129,7 @@ public class jfinterfaz extends javax.swing.JFrame {
 
         rSLabelHora1.setForeground(new java.awt.Color(255, 255, 255));
         rSLabelHora1.setFont(new java.awt.Font("AR CENA", 0, 36)); // NOI18N
-        getContentPane().add(rSLabelHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
+        getContentPane().add(rSLabelHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 400, 210, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/centro (1).png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(400, 400));
@@ -220,7 +222,12 @@ public class jfinterfaz extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("AR CENA", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Quantum:");
-        pprincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 160, 60));
+        pprincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 230, 60));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel8.setText("ms");
+        pprincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 168, 40, 30));
 
         txtquantum.setFont(new java.awt.Font("AR CENA", 0, 24)); // NOI18N
         txtquantum.setForeground(new java.awt.Color(255, 102, 0));
@@ -231,7 +238,11 @@ public class jfinterfaz extends javax.swing.JFrame {
                 txtquantumMouseClicked(evt);
             }
         });
-        pprincipal.add(txtquantum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 260, 50));
+        pprincipal.add(txtquantum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, 50));
+
+        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 255, 255));
+        rSMaterialButtonRectangle2.setText("rSMaterialButtonRectangle2");
+        pprincipal.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         btningresar.setBackground(new java.awt.Color(255, 255, 255));
         btningresar.setForeground(new java.awt.Color(255, 102, 0));
@@ -246,11 +257,22 @@ public class jfinterfaz extends javax.swing.JFrame {
                 btningresarActionPerformed(evt);
             }
         });
-        pprincipal.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 160, -1));
+        pprincipal.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 160, -1));
 
-        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 255, 255));
-        rSMaterialButtonRectangle2.setText("rSMaterialButtonRectangle2");
-        pprincipal.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        btninterrupción.setBackground(new java.awt.Color(255, 255, 255));
+        btninterrupción.setForeground(new java.awt.Color(255, 102, 0));
+        btninterrupción.setText("INTERRUPCION");
+        btninterrupción.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btninterrupciónMouseClicked(evt);
+            }
+        });
+        btninterrupción.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninterrupciónActionPerformed(evt);
+            }
+        });
+        pprincipal.add(btninterrupción, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo5.jpg"))); // NOI18N
         pprincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 420));
@@ -333,6 +355,10 @@ public class jfinterfaz extends javax.swing.JFrame {
         ));
         rsTblProcesos.setColorBackgoundHead(new java.awt.Color(255, 102, 0));
         rsTblProcesos.setColorFilasBackgound2(new java.awt.Color(255, 204, 102));
+        rsTblProcesos.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        rsTblProcesos.setColorFilasForeground2(new java.awt.Color(255, 255, 255));
+        rsTblProcesos.setColorSelBackgound(new java.awt.Color(255, 204, 102));
+        rsTblProcesos.setEnabled(false);
         jScrollPane1.setViewportView(rsTblProcesos);
 
         pprocesos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 390, 290));
@@ -449,6 +475,14 @@ public class jfinterfaz extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btningresarActionPerformed
 
+    private void btninterrupciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninterrupciónMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btninterrupciónMouseClicked
+
+    private void btninterrupciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninterrupciónActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btninterrupciónActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -487,6 +521,7 @@ public class jfinterfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncerrar;
     private rojerusan.RSMaterialButtonRectangle btningresar;
+    private rojerusan.RSMaterialButtonRectangle btninterrupción;
     private javax.swing.JButton btnminimizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -495,6 +530,7 @@ public class jfinterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
