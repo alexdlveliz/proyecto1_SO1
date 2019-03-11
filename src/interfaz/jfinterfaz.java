@@ -6,7 +6,9 @@
 package interfaz;
 
 import Clases.Hilo;
+import Clases.HiloInterrupcion;
 import com.sun.awt.AWTUtilities;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import rojerusan.RSPanelsSlider;
 
@@ -28,7 +31,7 @@ public class jfinterfaz extends javax.swing.JFrame {
     private ArrayList<Integer> noProcesos;
     private Hilo hiloProcesos;
     private int q;
-
+    private HiloInterrupcion hiloI;
     /**
      * Creates new form jfinterfaz
      */
@@ -37,6 +40,7 @@ public class jfinterfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         AWTUtilities.setWindowOpaque(this, false);
         sNumeros(txtquantum);
+        
         procesos = new ArrayList<>();
         noProcesos = new ArrayList<>();
         hiloProcesos = new Hilo();
@@ -476,11 +480,14 @@ public class jfinterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void btninterrupciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninterrupciónMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btninterrupciónMouseClicked
 
     private void btninterrupciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninterrupciónActionPerformed
-        // TODO add your handling code here:
+        //UIManager.put( "nimbusOrange", new Color( 38, 139, 210 ) );
+        hiloI = new HiloInterrupcion();
+        hiloI.setHilo(hiloProcesos);
+        hiloI.start();
     }//GEN-LAST:event_btninterrupciónActionPerformed
 
     /**

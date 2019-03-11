@@ -55,7 +55,14 @@ public class Hilo extends Thread {
         this.tablita = tablita;
         this.hora = hora;
     }
-
+    public void terminarXInterrupcion(){
+        this.cont=0;
+        if(this.turno+1==listaProcesos.size()){
+            this.turno=0;
+        }else{
+            this.turno++;
+        }
+    }
     @Override
     public void run() {
         while (!listaProcesos.isEmpty()) {
