@@ -27,6 +27,7 @@ import rojerusan.RSPanelsSlider;
 public class jfinterfaz extends javax.swing.JFrame {
 
     boolean click = false;
+    int cont = 0;
     private ArrayList<JProgressBar> procesos;
     private ArrayList<Integer> noProcesos;
     private Hilo hiloProcesos;
@@ -85,6 +86,10 @@ public class jfinterfaz extends javax.swing.JFrame {
         rscalendarizacion = new rojerusan.RSPanelsSlider();
         pcalenvacio = new javax.swing.JPanel();
         pcalendarizacion = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lbldireccion = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btn = new rojerusan.RSMaterialButtonRectangle();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         rspprocesos = new rojerusan.RSPanelsSlider();
@@ -228,10 +233,10 @@ public class jfinterfaz extends javax.swing.JFrame {
         jLabel7.setText("Quantum:");
         pprincipal.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 230, 60));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("AR CENA", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 102, 0));
         jLabel8.setText("ms");
-        pprincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 168, 40, 30));
+        pprincipal.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 169, 40, 30));
 
         txtquantum.setFont(new java.awt.Font("AR CENA", 0, 24)); // NOI18N
         txtquantum.setForeground(new java.awt.Color(255, 102, 0));
@@ -288,30 +293,72 @@ public class jfinterfaz extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel4.setFocusCycleRoot(true);
+        jPanel4.setMaximumSize(new java.awt.Dimension(554, 413));
+        jPanel4.setMinimumSize(new java.awt.Dimension(554, 413));
         jPanel4.setOpaque(false);
+        jPanel4.setPreferredSize(new java.awt.Dimension(554, 413));
         jPanel4.setLayout(new java.awt.CardLayout());
 
+        rscalendarizacion.setMaximumSize(new java.awt.Dimension(554, 413));
+        rscalendarizacion.setMinimumSize(new java.awt.Dimension(554, 413));
         rscalendarizacion.setName("rscalendarizacion"); // NOI18N
         rscalendarizacion.setOpaque(false);
+        rscalendarizacion.setPreferredSize(new java.awt.Dimension(554, 413));
 
+        pcalenvacio.setMaximumSize(new java.awt.Dimension(554, 413));
+        pcalenvacio.setMinimumSize(new java.awt.Dimension(554, 413));
         pcalenvacio.setName("pcalenvacio"); // NOI18N
         pcalenvacio.setOpaque(false);
+        pcalenvacio.setPreferredSize(new java.awt.Dimension(554, 413));
 
         javax.swing.GroupLayout pcalenvacioLayout = new javax.swing.GroupLayout(pcalenvacio);
         pcalenvacio.setLayout(pcalenvacioLayout);
         pcalenvacioLayout.setHorizontalGroup(
             pcalenvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 554, Short.MAX_VALUE)
         );
         pcalenvacioLayout.setVerticalGroup(
             pcalenvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         rscalendarizacion.add(pcalenvacio, "card2");
 
+        pcalendarizacion.setMaximumSize(new java.awt.Dimension(554, 413));
+        pcalendarizacion.setMinimumSize(new java.awt.Dimension(554, 413));
         pcalendarizacion.setName("pcalendarizacion"); // NOI18N
+        pcalendarizacion.setPreferredSize(new java.awt.Dimension(554, 413));
         pcalendarizacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setFont(new java.awt.Font("AR CENA", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Program counter (PC):");
+        pcalendarizacion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 340, 60));
+
+        lbldireccion.setFont(new java.awt.Font("AR CENA", 0, 30)); // NOI18N
+        lbldireccion.setForeground(new java.awt.Color(255, 102, 0));
+        lbldireccion.setName("lbldireccion"); // NOI18N
+        pcalendarizacion.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 160, 40));
+
+        jLabel10.setFont(new java.awt.Font("AR CENA", 0, 30)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Dirección de memoria: ");
+        pcalendarizacion.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 250, 60));
+
+        btn.setBackground(new java.awt.Color(255, 255, 255));
+        btn.setForeground(new java.awt.Color(255, 102, 0));
+        btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMouseClicked(evt);
+            }
+        });
+        btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionPerformed(evt);
+            }
+        });
+        pcalendarizacion.add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 240, 60));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo3.jpg"))); // NOI18N
         pcalendarizacion.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 420));
@@ -330,6 +377,7 @@ public class jfinterfaz extends javax.swing.JFrame {
         rspprocesos.setOpaque(false);
         rspprocesos.setPreferredSize(new java.awt.Dimension(554, 413));
 
+        pprocesovacio.setName("pprocesovacio"); // NOI18N
         pprocesovacio.setOpaque(false);
 
         javax.swing.GroupLayout pprocesovacioLayout = new javax.swing.GroupLayout(pprocesovacio);
@@ -398,13 +446,26 @@ public class jfinterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        if (click == false) {
+        if (click == false && cont <1) 
+        {
             rsprincipal.setPanelSlider((int) 1.2, pprincipal, RSPanelsSlider.DIRECT.UP);
             rsprogres.setPanelSlider((int) 1.2, pprogres, RSPanelsSlider.DIRECT.DOWN);
             click = true;
-        } else {
+            cont +=1;
+        }
+         else if(click == false && cont>=1)
+        {
+            rsprincipal.setPanelSlider((int) 1.2, pprincipal, RSPanelsSlider.DIRECT.UP);
+            rsprogres.setPanelSlider((int) 1.2, pprogres, RSPanelsSlider.DIRECT.DOWN);
+            rscalendarizacion.setPanelSlider((int)1.2,pcalendarizacion, RSPanelsSlider.DIRECT.DOWN);
+            rspprocesos.setPanelSlider((int)1.2,pprocesos, RSPanelsSlider.DIRECT.UP);
+            click = true;
+        }
+       else {
             rsprincipal.setPanelSlider((int) 1.2, pprincipalvacio, RSPanelsSlider.DIRECT.UP);
             rsprogres.setPanelSlider((int) 1.2, pprogresvacio, RSPanelsSlider.DIRECT.DOWN);
+            rscalendarizacion.setPanelSlider((int)1.2,pcalenvacio, RSPanelsSlider.DIRECT.LEFT);
+            rspprocesos.setPanelSlider((int)1.2,pprocesovacio, RSPanelsSlider.DIRECT.LEFT);
             click = false;
         }
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -490,6 +551,14 @@ public class jfinterfaz extends javax.swing.JFrame {
         hiloI.start();
     }//GEN-LAST:event_btninterrupciónActionPerformed
 
+    private void btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMouseClicked
+
+    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,11 +595,13 @@ public class jfinterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSMaterialButtonRectangle btn;
     private javax.swing.JButton btncerrar;
     private rojerusan.RSMaterialButtonRectangle btningresar;
     private rojerusan.RSMaterialButtonRectangle btninterrupción;
     private javax.swing.JButton btnminimizar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -538,11 +609,13 @@ public class jfinterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbldireccion;
     private javax.swing.JPanel panelProgress;
     private javax.swing.JPanel pcalendarizacion;
     private javax.swing.JPanel pcalenvacio;
