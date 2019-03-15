@@ -72,8 +72,8 @@ public class Hilo extends Thread {
     public void run() {
         while (!listaProcesos.isEmpty()) {
             try {
-                etiqueta.setText(""+cont);
                 this.cont++;
+                etiqueta.setText(""+(30+cont));
                 this.progreso = listaProcesos.get(this.turno).getValue();
                 this.progreso++;
                 listaProcesos.get(this.turno).setValue(this.progreso);
