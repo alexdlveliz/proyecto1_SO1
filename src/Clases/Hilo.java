@@ -8,6 +8,7 @@ package Clases;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,7 @@ public class Hilo extends Thread {
     private ArrayList<Integer> noProceso;
     private RSTableMetro tablita;
     private RSLabelHora hora;
+    private JLabel etiqueta;
 
     public Hilo() {
         this.cont = 0;
@@ -63,10 +65,14 @@ public class Hilo extends Thread {
             this.turno++;
         }
     }
+    public void setEtiqueta(JLabel etiqueta) {
+        this.etiqueta = etiqueta;
+    }
     @Override
     public void run() {
         while (!listaProcesos.isEmpty()) {
             try {
+                etiqueta.setText(""+cont);
                 this.cont++;
                 this.progreso = listaProcesos.get(this.turno).getValue();
                 this.progreso++;

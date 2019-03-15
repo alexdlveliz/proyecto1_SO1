@@ -491,6 +491,7 @@ public class jfinterfaz extends javax.swing.JFrame {
             rscalendarizacion.setPanelSlider((int) 1.2, pcalendarizacion, RSPanelsSlider.DIRECT.LEFT);
             q = Integer.parseInt(txtquantum.getText());
             rsTblProcesos.setModel(colocar_textos_tabla(rSLabelHora1.getHora()));
+            hiloProcesos.setEtiqueta(lbldireccion);
             btninterrupcion.setEnabled(true);
         }
     }//GEN-LAST:event_btningresarMouseClicked

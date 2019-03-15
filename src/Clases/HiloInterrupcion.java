@@ -18,8 +18,8 @@ public class HiloInterrupcion extends Thread {
 
     private Hilo hilo;
     private int cont;
-private JButton boton;
-private JLabel etiqueta;
+    private JButton boton;
+    private JLabel etiqueta;
     public HiloInterrupcion() {
         this.cont = 0;
     }
