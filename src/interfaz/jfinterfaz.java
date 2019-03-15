@@ -80,7 +80,7 @@ public class jfinterfaz extends javax.swing.JFrame {
         txtquantum = new javax.swing.JTextField();
         rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         btningresar = new rojerusan.RSMaterialButtonRectangle();
-        btninterrupción = new rojerusan.RSMaterialButtonRectangle();
+        btninterrupcion = new rojerusan.RSMaterialButtonRectangle();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         rscalendarizacion = new rojerusan.RSPanelsSlider();
@@ -268,20 +268,21 @@ public class jfinterfaz extends javax.swing.JFrame {
         });
         pprincipal.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 160, -1));
 
-        btninterrupción.setBackground(new java.awt.Color(255, 255, 255));
-        btninterrupción.setForeground(new java.awt.Color(255, 102, 0));
-        btninterrupción.setText("INTERRUPCION");
-        btninterrupción.addMouseListener(new java.awt.event.MouseAdapter() {
+        btninterrupcion.setBackground(new java.awt.Color(255, 255, 255));
+        btninterrupcion.setForeground(new java.awt.Color(255, 102, 0));
+        btninterrupcion.setText("INTERRUPCION");
+        btninterrupcion.setEnabled(false);
+        btninterrupcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btninterrupciónMouseClicked(evt);
+                btninterrupcionMouseClicked(evt);
             }
         });
-        btninterrupción.addActionListener(new java.awt.event.ActionListener() {
+        btninterrupcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btninterrupciónActionPerformed(evt);
+                btninterrupcionActionPerformed(evt);
             }
         });
-        pprincipal.add(btninterrupción, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, -1));
+        pprincipal.add(btninterrupcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo5.jpg"))); // NOI18N
         pprincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 420));
@@ -490,6 +491,7 @@ public class jfinterfaz extends javax.swing.JFrame {
             rscalendarizacion.setPanelSlider((int) 1.2, pcalendarizacion, RSPanelsSlider.DIRECT.LEFT);
             q = Integer.parseInt(txtquantum.getText());
             rsTblProcesos.setModel(colocar_textos_tabla(rSLabelHora1.getHora()));
+            btninterrupcion.setEnabled(true);
         }
     }//GEN-LAST:event_btningresarMouseClicked
 
@@ -540,16 +542,18 @@ public class jfinterfaz extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btningresarActionPerformed
 
-    private void btninterrupciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninterrupciónMouseClicked
+    private void btninterrupcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninterrupcionMouseClicked
         
-    }//GEN-LAST:event_btninterrupciónMouseClicked
+    }//GEN-LAST:event_btninterrupcionMouseClicked
 
-    private void btninterrupciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninterrupciónActionPerformed
+    private void btninterrupcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninterrupcionActionPerformed
         //UIManager.put( "nimbusOrange", new Color( 38, 139, 210 ) );
         hiloI = new HiloInterrupcion();
+        hiloI.setBoton(btninterrupcion);
+        hiloI.setEtiqueta(lbldireccion);
         hiloI.setHilo(hiloProcesos);
         hiloI.start();
-    }//GEN-LAST:event_btninterrupciónActionPerformed
+    }//GEN-LAST:event_btninterrupcionActionPerformed
 
     private void btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMouseClicked
         // TODO add your handling code here:
@@ -598,7 +602,7 @@ public class jfinterfaz extends javax.swing.JFrame {
     private rojerusan.RSMaterialButtonRectangle btn;
     private javax.swing.JButton btncerrar;
     private rojerusan.RSMaterialButtonRectangle btningresar;
-    private rojerusan.RSMaterialButtonRectangle btninterrupción;
+    private rojerusan.RSMaterialButtonRectangle btninterrupcion;
     private javax.swing.JButton btnminimizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -399,7 +399,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="rojerusan.RSMaterialButtonRectangle" name="btninterrupci&#xf3;n">
+                <Component class="rojerusan.RSMaterialButtonRectangle" name="btninterrupcion">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -408,10 +408,11 @@
                       <Color blue="0" green="66" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="INTERRUPCION"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btninterrupci&#xf3;nMouseClicked"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btninterrupci&#xf3;nActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btninterrupcionMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btninterrupcionActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
