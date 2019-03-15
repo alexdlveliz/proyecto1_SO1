@@ -10,6 +10,8 @@ import Clases.HiloInterrupcion;
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -39,6 +41,8 @@ public class jfinterfaz extends javax.swing.JFrame {
     public jfinterfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image ico = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/centro.png"));
+        this.setIconImage(ico);
         AWTUtilities.setWindowOpaque(this, false);
         sNumeros(txtquantum);
         
@@ -340,7 +344,7 @@ public class jfinterfaz extends javax.swing.JFrame {
         lbldireccion.setFont(new java.awt.Font("AR CENA", 0, 30)); // NOI18N
         lbldireccion.setForeground(new java.awt.Color(255, 102, 0));
         lbldireccion.setName("lbldireccion"); // NOI18N
-        pcalendarizacion.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 160, 40));
+        pcalendarizacion.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 100, 40));
 
         jLabel10.setFont(new java.awt.Font("AR CENA", 0, 30)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
